@@ -52,7 +52,6 @@
           <input type="text" id="rfc-result" disabled="disbaled" class="u-full-width" />
         </div>
 
-
       </div>
     </div>
   </div>
@@ -66,8 +65,13 @@
       mother_surname = document.getElementById("mother_surname").value;
       born_date = document.getElementById("born_date").value;
       rfc_field = document.getElementById("rfc-result")
+      rfc_field_homoclave = document.getElementById("homoclave-result")
+      rfc_field_digito = document.getElementById("digito-result")
       born_date = born_date.split('/')
       rfc_field.value = rfc.getRFC(name, father_surname, mother_surname, born_date[0], born_date[1], born_date[2]);
+     
+
+
     });
   </script>
 </body>

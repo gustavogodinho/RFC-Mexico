@@ -4,63 +4,141 @@ var homoclave = {
     fn_HomoclaveRFC: function (name) {
         equivalencia = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
         i = 1;
-        cadenaNums = '';
+        cadenaNums = 0;
         total = name.length;
         suma = 0;
 
         while (i <= total) {
 
-            cadenaNums = cadenaNums + this.caracter(name, i);
+            cadenaNums += this.caracterHomoclaveRFC(name, i);
 
             i++;
         }
+        console.log(cadenaNums)
 
         i = 1;
 
         cadenaNums = '0' + cadenaNums;
+        console.log(cadenaNums)
 
         while (i <= cadenaNums.length - 1) {
 
-            numero1 = cadenaNums.substring(i, 2)
-            numero2 = cadenaNums.substring(i + 1, 1)
+            numero1 = cadenaNums.substr(i, 2)
+            numero2 = cadenaNums.substr(i + 1, 1)
 
             suma += numero1 * numero2;
 
             i++;
         }
 
+        console.log(suma)
+
         cociente = suma / 34
         residuo = suma % 34
 
-        return h = equivalencia.substring(cociente + 1, 1) + equivalencia.substring(residuo + 1, 1);
+        console.log(cociente)
+        console.log(residuo)
 
+        console.log(equivalencia.substr(cociente + 1, 1) + equivalencia.substr(residuo + 1, 1));
+        return h = equivalencia.substr(cociente + 1, 1) + equivalencia.substr(residuo + 1, 1);
+        
+    },
+    fn_DigitoVerificadorRFC: function (texto) {
+        total = texto.length;
+        cadenaNums = '';
+        cont = 0;
+        suma = 0;
+        i = 1;
+
+        if (total = 12) {
+            modValue = 11
+        }
+        else {
+            modValue = 10
+        }
+
+        while (i <= total) {
+            cadenaNums = cadenaNums + this.caracterDigitoVerificador(texto, i)
+            i++
+        }
+
+        i = 1;
+
+        while (i <= 23) {
+            numero = cadenaNums.substr(i, 2)
+            suma += (numero * (13 - cont))
+
+            cont++
+            i++
+        }
+
+        residuo = suma % modValue;
+        r = 11 - residuo;
+
+        if (residuo = 0) {
+            digitoVerificador = '0'
+        } else {
+            if (r = 10) {
+                digitoVerificador = 'A'
+            } else {
+                digitoVerificador = r
+            }
+        }
+
+        return digitoVerificador
     },
 
-    caracter: function (name, i) {
-        r = ''
-        caracter = name.substring(i, 1);
+    caracterHomoclaveRFC: function (name, i) {
+        r = 0
+        caracter = name.substr(i, 1);
+        //console.log(name.substr(i, 1));
+
 
         switch (caracter) {
-            case '':
-                r = '00'
+            case ' ':
+                r = 00
             case '&':
-                r = '10'
+                r = 10
             case 'Ñ':
-                r = '10'
+                r = 10
             case 'A': case 'B': case 'C': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I':
                 r = caracter.charCodeAt(0) - 54
+                //console.log(caracter)
+                //console.log(caracter.charCodeAt(0))
+                //console.log('primeiro')
             case 'J': case 'K': case 'L': case 'M': case 'N': case 'O': case 'P': case 'Q': case 'R':
                 r = caracter.charCodeAt(0) - 53
+                //console.log(caracter)
+                //console.log(caracter.charCodeAt(0))
+                //console.log('segundo')
             case 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z':
+             //   console.log(caracter)
                 r = caracter.charCodeAt(0) - 51
+               // console.log(caracter.charCodeAt(0))
+               // console.log('terceiro')
+        }
+        console.log(r)
+        return r
+    },
+    caracterDigitoVerificador: function (texto, i) {
+        caracter = texto.substring(i, 1)
+        switch (caracter) {
+            case ' ':
+                r = '37'
+            case '&':
+                r = '24'
+            case 'Ñ':
+                r = '38'
+            case 'A': case 'B': case 'C': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I': case 'J': case 'K': case 'L': case 'M': case 'N':
+                r = caracter.charCodeAt(0) - 55
+            case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T': case 'U': case 'V': case 'W': case 'X': case 'Y': case 'Z':
+                r = caracter.charCodeAt(0) - 54
+            case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+                r = '0' + caracter
         }
         return r
     }
-
-
 }
-
-
 
 var rfc = {
     getRFC: function (name, surnameFather, surnameMother, bornDay, bornMonth, bornYear) {
@@ -75,10 +153,10 @@ var rfc = {
         rfc = this.getCommonPart(name, surnameFather, surnameMother, bornDay, bornMonth, bornYear);
         n = name + ' ' + surnameFather + ' ' + surnameMother;
         h = homoclave.fn_HomoclaveRFC(n);
+        d = homoclave.fn_DigitoVerificadorRFC(rfc + h);
 
-        return rfc + h;
+        return h;
     },
-
     getCommonPart: function (name, surnameFather, surnameMother, bornDay, bornMonth, bornYear) {
         commonPart = surnameFather[0];
         commonPart += StringUtilities.getFirstInternalVowel(surnameFather);
