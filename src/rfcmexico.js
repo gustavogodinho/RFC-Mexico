@@ -1,4 +1,67 @@
 
+var homoclave = {
+
+    fn_HomoclaveRFC: function (name) {
+        equivalencia = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
+        i = 1;
+        cadenaNums = '';
+        total = name.length;
+        suma = 0;
+
+        while (i <= total) {
+
+            cadenaNums = cadenaNums + this.caracter(name, i);
+
+            i++;
+        }
+
+        i = 1;
+
+        cadenaNums = '0' + cadenaNums;
+
+        while (i <= cadenaNums.length - 1) {
+
+            numero1 = cadenaNums.substring(i, 2)
+            numero2 = cadenaNums.substring(i + 1, 1)
+
+            suma += numero1 * numero2;
+
+            i++;
+        }
+
+        cociente = suma / 34
+        residuo = suma % 34
+
+        return h = equivalencia.substring(cociente + 1, 1) + equivalencia.substring(residuo + 1, 1);
+
+    },
+
+    caracter: function (name, i) {
+        r = ''
+        caracter = name.substring(i, 1);
+
+        switch (caracter) {
+            case '':
+                r = '00'
+            case '&':
+                r = '10'
+            case 'Ñ':
+                r = '10'
+            case 'A': case 'B': case 'C': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I':
+                r = caracter.charCodeAt(0) - 54
+            case 'J': case 'K': case 'L': case 'M': case 'N': case 'O': case 'P': case 'Q': case 'R':
+                r = caracter.charCodeAt(0) - 53
+            case 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z':
+                r = caracter.charCodeAt(0) - 51
+        }
+        return r
+    }
+
+
+}
+
+
+
 var rfc = {
     getRFC: function (name, surnameFather, surnameMother, bornDay, bornMonth, bornYear) {
 
@@ -10,8 +73,10 @@ var rfc = {
         bornYear = StringUtilities.clearString(bornYear);
 
         rfc = this.getCommonPart(name, surnameFather, surnameMother, bornDay, bornMonth, bornYear);
+        n = name + ' ' + surnameFather + ' ' + surnameMother;
+        h = homoclave.fn_HomoclaveRFC(n);
 
-        return rfc;
+        return rfc + h;
     },
 
     getCommonPart: function (name, surnameFather, surnameMother, bornDay, bornMonth, bornYear) {
@@ -26,7 +91,7 @@ var rfc = {
 
         return commonPart;
     },
-  
+
     removeCommonNames: function (name) {
         this.notAcceptedNames.forEach(
             function (notAccepted) {
@@ -69,8 +134,29 @@ var rfc = {
         'J '
     ),
     prefixes: new Array(
+        'PARA ',
+        'AND ',
+        'CON ',
+        'DEL ',
+        'LAS ',
+        'LOS ',
+        'MAC ',
+        'POR ',
+        'SUS ',
+        'THE ',
+        'VAN ',
+        'VON ',
+        'AL ',
         'DE ',
-        'DEL '
+        'EL ',
+        'EN ',
+        'LA ',
+        'MC ',
+        'MI ',
+        'OF ',
+        'A ',
+        'E ',
+        'Y '
     ),
 
     badWordsRFC: {
@@ -152,5 +238,7 @@ var StringUtilities = {
         }
         return word;
     }
+
+
 
 }
