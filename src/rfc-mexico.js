@@ -22,7 +22,7 @@ var StringUtilities = {
         cleanWord = this.removeAccents(cleanWord.toUpperCase());
         return cleanWord;
     },
-    removeAccents: function(word)
+    removeAccents: function(word) // ok 
     {
         accents = {
             'Á': 'A',
@@ -57,7 +57,7 @@ var rfc = {
 
     },
 
-    getCommonPart:  function(name, surnameFather, surnameMother, bornDay, bornMonth, bornYear, type) {
+    getCommonPart:  function(name, surnameFather, surnameMother, bornDay, bornMonth, bornYear) {
                             commonPart = surnameFather[0];
                             commonPart += StringUtilities.getFirstInternalVowel(surnameFather);
                             commonPart += surnameMother[0] || 'X';
@@ -113,7 +113,7 @@ var rfc = {
     },
 
     states: new Array(
-                {name: "AGUASCALIENTES"         , code: "AS"},  //1
+                {name: "AGUASCALIENTES"         , code: "AS"},  
                 {name: "BAJA CALIFORNIA"        , code: "BC"},
                 {name: "BAJA CALIFORNIA SUR"    , code: "BS"},
                 {name: "CAMPECHE"               , code: "CC"},
@@ -144,7 +144,7 @@ var rfc = {
                 {name: "TLAXCALA"               , code: "TL"},
                 {name: "VERACRUZ"               , code: "VZ"},
                 {name: "YUCATÁN"                , code: "YN"},
-                {name: "ZACATECAS"              , code: "ZS"}   //32
+                {name: "ZACATECAS"              , code: "ZS"}   
                 ),
     notAcceptedNames: new Array(
         'MARIA DEL ',
@@ -162,89 +162,6 @@ var rfc = {
         'DE ',
         'DEL '
         ),
-    badWordsCURP: {
-        "BACA": "BXCA",
-        "LOCO": "LXCO",
-        "BAKA": "BXKA",
-        "BUEI": "BXEI",
-        "BUEY": "BXEY",
-        "CACA": "CXCA",
-        "CACO": "CXCO",
-        "CAGA": "CXGA",
-        "CAGO": "CXGO",
-        "CAKA": "CXKA",
-        "CAKO": "CXKO",
-        "COGE": "CXGE",
-        "COGI": "CXGI",
-        "COJA": "CXJA",
-        "COJE": "CXJE",
-        "COJI": "CXJI",
-        "COJO": "CXJO",
-        "COLA": "CXLA",
-        "CULO": "CXLO",
-        "FALO": "FXLO",
-        "FETO": "FXTO",
-        "GETA": "GXTA",
-        "GUEI": "GXEI",
-        "GUEY": "GXEY",
-        "JETA": "JXTA",
-        "JOTO": "JXTO",
-        "KACA": "KXCA",
-        "KACO": "KXCO",
-        "KAGA": "KXGA",
-        "KAGO": "KXGO",
-        "KAKA": "KXKA",
-        "KAKO": "KXKO",
-        "KOGE": "KXGE",
-        "KOGI": "KXGI",
-        "KOJA": "KXJA",
-        "KOJE": "KXJE",
-        "KOJI": "KXJI",
-        "KOJO": "KXJO",
-        "KOLA": "KXLA",
-        "KULO": "KXLO",
-        "LILO": "LXLO",
-        "LOKA": "LXKA",
-        "LOKO": "LXKO",
-        "MAME": "MXME",
-        "MAMO": "MXMO",
-        "MEAR": "MXAR",
-        "MEAS": "MXAS",
-        "MEON": "MXON",
-        "MIAR": "MXAR",
-        "MION": "MXON",
-        "MOCO": "MXCO",
-        "MOKO": "MXKO",
-        "MULA": "MXLA",
-        "MULO": "MXLO",
-        "NACA": "NXCA",
-        "NACO": "NXCO",
-        "PEDA": "PXDA",
-        "PEDO": "PXDO",
-        "PENE": "PXNE",
-        "PIPI": "PXPI",
-        "PITO": "PXTO",
-        "POPO": "PXPO",
-        "PUTA": "PXTA",
-        "PUTO": "PXTO",
-        "QULO": "QXLO",
-        "RATA": "RXTA",
-        "ROBA": "RXBA",
-        "ROBE": "RXBE",
-        "ROBO": "RXBO",
-        "RUIN": "RXIN",
-        "SENO": "SXNO",
-        "TETA": "TXTA",
-        "VACA": "VXCA",
-        "VAGA": "VXGA",
-        "VAGO": "VXGO",
-        "VAKA": "VXKA",
-        "VUEI": "VXEI",
-        "VUEY": "VXEY",
-        "WUEI": "WXEI",
-        "WUEY": "WXEY"
-    },
-
     badWordsRFC : {
         "BUEI": "BUEX",
         "BUEY": "BUEX",
