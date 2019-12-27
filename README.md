@@ -11,4 +11,4 @@
 
 
 # Index
-![alt text](https://github.com/gustavogodinho/rfc-mexico/blob/master/rfcIndex.png)
+![alt text](https://github.com/gustavogodinho/RFC-Mexico/blob/master/rfcIndex.PNG)
