@@ -7,3 +7,8 @@
 -> Remueve nombres y abreviaciones comunes descartados en la construcción del RFC
 -> Obtiene las 4 letras para el RFC de una persona fisica
 -> Sustituye palabra prohibidas en RFC
+
+
+
+# Index
+![alt text](https://github.com/gustavogodinho/rfc-mexico/blob/master/rfcIndex.png)
